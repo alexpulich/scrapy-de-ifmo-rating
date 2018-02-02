@@ -13,7 +13,7 @@ class RatingSpider(scrapy.Spider):
             yield response.follow(href, self.parse_list)
 
     def parse_list(self, response):
-        for row in response.css('.table-rating tr')[1:]:
+        for row in response.css('.table-rating tr'):
             item = DeIfmoRatingItem()
             item['rank'] = row.css('td::text')[0].extract()
             item['name'] = row.css('td::text')[1].extract()
